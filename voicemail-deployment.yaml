@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: voicemail-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: voicemail-service
+  template:
+    metadata:
+      labels:
+        app: voicemail-service
+    spec:
+      containers:
+      - name: voicemail-service
+        image: <your-account-id>.dkr.ecr.<your-region>.amazonaws.com/voicemail-service:latest
+        ports:
+        - containerPort: 5000
+
